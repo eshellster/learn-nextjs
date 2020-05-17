@@ -1,0 +1,333 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Profile",
+      "field": "User",
+      "type": "User",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Profile",
+          "field": "User"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Profile",
+          "field": "User"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[userId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Profile",
+          "field": "User"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Profile",
+      "field": "user"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "hint",
+      "type": "Hint",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "puzz",
+      "type": "Puzz",
+      "arity": "Optional"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "User",
+      "field": "puzzes"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "User",
+      "field": "hints"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Folder",
+      "field": "other_Folder",
+      "type": "Folder",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Folder",
+          "field": "other_Folder"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Folder",
+          "field": "other_Folder"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "value": "\"FolderToFolder_folderId\""
+    },
+    {
+      "tag": "CreateField",
+      "model": "Folder",
+      "field": "puzz",
+      "type": "Puzz",
+      "arity": "Optional"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Folder",
+      "field": "subFolders"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Folder",
+      "field": "puzzes"
+    },
+    {
+      "tag": "UpdateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Folder",
+          "field": "folder"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "newValue": "\"FolderToFolder_folderId\""
+    },
+    {
+      "tag": "CreateField",
+      "model": "Puzz",
+      "field": "folder",
+      "type": "Folder",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Puzz",
+          "field": "folder"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Puzz",
+          "field": "folder"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[folderId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Puzz",
+          "field": "folder"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Puzz",
+      "field": "puzz",
+      "type": "Puzz",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Puzz",
+          "field": "puzz"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Puzz",
+          "field": "puzz"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "value": "\"PuzzToPuzz_puzzId\""
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Puzz",
+          "field": "puzz"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[puzzId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Puzz",
+          "field": "puzz"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Puzz",
+      "field": "other_Puzz",
+      "type": "Puzz",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Puzz",
+          "field": "other_Puzz"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Puzz",
+          "field": "other_Puzz"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "value": "\"PuzzToPuzz_puzzId\""
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Puzz",
+      "field": "Folder"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Puzz",
+      "field": "forked"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Puzz",
+      "field": "Puzz"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Hint",
+      "field": "puzz",
+      "type": "Puzz",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Hint",
+          "field": "puzz"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Hint",
+          "field": "puzz"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Hint",
+      "field": "puzzes"
+    }
+  ]
+}

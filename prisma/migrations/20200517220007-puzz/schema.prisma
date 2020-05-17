@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 model Folder {
@@ -15,25 +15,15 @@ model Folder {
   puzzleSize   Int
   folder       Folder? @relation("FolderToFolder_folderId", fields: [folderId], references: [id])
   other_Folder Folder? @relation("FolderToFolder_folderId")
-  puzzes       Puzz[]
-  note         Note[]
-}
-
-model Note {
-  id          Int     @default(autoincrement()) @id
-  name        String?
-  puzzleLevel Int
-  puzzleSize  Int
-  puzzes      Puzz[]
-  folder      Folder? @relation(fields: [folderId], references: [id])
-  folderId    Int?
+  puzz         Puzz?
 }
 
 model Hint {
-  keyWords String
-  hint     String
-  id       Int    @default(autoincrement()) @id
-  puzz     Puzz[] @relation(references: [id])
+  hintWords String?
+  id        Int     @default(autoincrement()) @id
+  userId    Int     @unique
+  user      User    @relation(fields: [userId], references: [id])
+  puzz      Puzz[]  @relation(references: [id])
 }
 
 model Profile {
@@ -49,30 +39,24 @@ model Puzz {
   folderId    Int?     @unique
   id          Int      @default(autoincrement()) @id
   kor         String
+  puzzId      Int?
   puzzleLevel Int?
   puzzleSize  Int?
   setDate     DateTime @default(now())
   tags        String[]
   userId      Int      @unique
   folder      Folder?  @relation(fields: [folderId], references: [id])
+  puzz        Puzz?    @relation("PuzzToPuzz_puzzId", fields: [puzzId], references: [id])
   user        User     @relation(fields: [userId], references: [id])
+  other_Puzz  Puzz[]   @relation("PuzzToPuzz_puzzId")
   hints       Hint[]   @relation(references: [id])
-  Note        Note?    @relation(fields: [noteId], references: [id])
-  noteId      Int?
 }
 
 model User {
   email   String   @unique
   id      Int      @default(autoincrement()) @id
   name    String?
+  hint    Hint?
   profile Profile?
-  puzzes  Puzz[]
-  Group   Group[]  @relation(fields: [groupId], references: [id])
-  groupId Int?
-}
-
-model Group {
-  id    Int    @default(autoincrement()) @id
-  name  String
-  users User[]
+  puzz    Puzz?
 }
